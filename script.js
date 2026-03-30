@@ -115,7 +115,6 @@ document.getElementById('endBtn').addEventListener('click', async () => {
 
     if (callId) {
         try {
-            // chama o backend do Vercel, token fica seguro lá
             await fetch(`/api/hangup?callId=${callId}`, { method: 'POST' });
         } catch (err) {
             console.error('Erro ao encerrar:', err);
@@ -127,5 +126,12 @@ document.getElementById('endBtn').addEventListener('click', async () => {
     win.style.opacity = '0';
     win.style.transform = 'scale(0.96)';
 
-    setTimeout(() => window.close(), 320);
+    setTimeout(() => {
+        window.close();
+        // fallback se o browser bloquear o window.close()
+        setTimeout(() => {
+            document.body.innerHTML =
+                '<div class="end-screen">Chamada encerrada</div>';
+        }, 300);
+    }, 320);
 });
