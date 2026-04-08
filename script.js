@@ -3,6 +3,7 @@ const name = params.get('name') || 'Contato';
 const telefone = params.get('telefone') || null;
 const idcontato = params.get('idcontato') || null;
 const idatendimento = params.get('idatendimento') || null;
+const cardid = params.get('cardid') || null;
 const iddousuario = params.get('iddousuario') || null;
 
 // nome e avatar (se possível) do contatoi
@@ -33,7 +34,7 @@ function setStatus(status) {
         // inicia o timer quando atender
         let seconds = 0;
         const timerEl = document.getElementById('timer');
-        const tick = setInterval(() => {
+        tick = setInterval(() => {
             seconds++;
             const m = String(Math.floor(seconds / 60)).padStart(2, '0');
             const s = String(seconds % 60).padStart(2, '0');
@@ -55,7 +56,7 @@ let callId = null;
 async function iniciarChamada() {
     setStatus('chamando');
     try {
-        const url = `https://hook.us1.make.com/5q2kbak4tcxx123gm1o6fl5j8tmnqxw9?telefone=${telefone}&idcontato=${idcontato}&idatendimento=${idatendimento}&iddousuario=${iddousuario}`;
+        const url = `https://hook.us1.make.com/na25fpfhaue8meixfybbfaqm8h0y1bzf?telefone=${telefone}&idcontato=${idcontato}&cardid=${cardid}&idatendimento=${idatendimento}&iddousuario=${iddousuario}`;
 
         const res = await fetch(url);
         const data = await res.json().catch(() => null);
