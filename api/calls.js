@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-    const response = await fetch('https://api.api4com.com/api/v1/calls', {
+    const response = await fetch('https://api.api4com.com/api/v1/dialer', {
         headers: { Authorization: process.env.API4COM_TOKEN },
     });
     const data = await response.json();
